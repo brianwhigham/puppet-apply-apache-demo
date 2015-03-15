@@ -1,7 +1,7 @@
 to configure an apache web server with puppet apply (masterless puppet)
 
     yum install git puppet
-    cd $TMPDIR
+    cd /tmp
     git clone git@github.com:brianwhigham/puppet-apply-apache-demo.git
     puppet module install puppetlabs/apache
     puppet module install puppetlabs/stdlib
