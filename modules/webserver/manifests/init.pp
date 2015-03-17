@@ -1,6 +1,15 @@
 class webserver {
   class{'apache':}
-  file{'/var/www/html/index.html':
-    source => "puppet:///modules/webserver/index.html",
+  class {'::apache::mod::php':}
+  vcsrepo {"/var/www/html":
+    ensure   => latest,
+    provider => git,
+    source   => 'https:/github.com/brianwhigham/puppet-apply-apache-website.git',
+    revision => 'master',
+  }
+  cron {"update web site. 99.99999% of pulls will be useless.  Git hooks would be better so long as you keep it secure.  Do not follow the online examples of having apache git pull it's own repo.  The owner of the files and the user Apache runs as should be different.":
+    command => "cd /var/www/html && git pull -q",
+    user    => root,
+    minute  => '*/5'
   }
 }
