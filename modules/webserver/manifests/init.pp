@@ -1,12 +1,13 @@
 class webserver {
   class{'apache':}
   class {'::apache::mod::php':}
-  apache::vhost { 'demo-loadbalancer.usg.edu':
-    vhost_name      => '*',
-    directoryindex  => 'index.php',
-    port            => '80',
-    docroot         => '/var/www/html',
-    serveraliases   => ['www.demo-loadbalancer.usg.edu',],
+  apache::vhost { 'demovdclb.bor.usg.edu':
+    vhost_name     => '*',
+    directoryindex => 'index.php',
+    port           => '80',
+    docroot        => '/var/www/html',
+    servername     => ['demovdclb.bor.usg.edu',],
+    serveraliases  => ['demovdclbpm1.bor.usg.edu',],
   }
   vcsrepo {"/var/www/html":
     ensure   => latest,
