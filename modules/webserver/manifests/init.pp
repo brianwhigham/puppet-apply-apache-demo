@@ -4,7 +4,7 @@ class webserver {
   vcsrepo {"/var/www/html":
     ensure   => latest,
     provider => git,
-    source   => 'https:/github.com/brianwhigham/puppet-apply-apache-website.git',
+    source   => 'https://github.com/brianwhigham/puppet-apply-apache-website.git',
     revision => 'master',
   }
   cron {"update web site. 99.99999% of pulls will be useless.  Git hooks would be better so long as you keep it secure.  Do not follow the online examples of having apache git pull it's own repo.  The owner of the files and the user Apache runs as should be different.":
